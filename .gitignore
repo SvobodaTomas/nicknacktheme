@@ -1,0 +1,16 @@
+# File system junk files
+.DS_Store
+
+# Editor files
+**/.sass-cache/
+**/.sass-cache/*
+*.css.map
+
+# NPM modules
+**/node_modules/
+**/node_modules/*
+
+# Others
+.gitattributes
+._*.*
+.__*.*
