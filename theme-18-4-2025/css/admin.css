@@ -1,0 +1,55 @@
+.post-type-slider #edit-slug-box,
+#wp-admin-bar-wp-logo,
+#wp-admin-bar-comments, 
+#wp-admin-bar-gravityforms-new-form,
+.role-editor #screen-options-link-wrap,
+.role-editor .gf_form_toolbar_editor,
+.role-editor .gf_form_toolbar_settings,
+#footer-left, #wp-admin-bar-comments,#wp-admin-bar-wp-logo,
+#wpbo_product_info > div.inside > div.overide-rule.rule-message {
+  display: none !important;
+}
+
+#acf-zaloha_obrazek1,
+#acf-zaloha_obrazek2 {
+  width: 33%;
+  float: left;
+  z-index: 1000;
+}
+
+#acf-field-fakta_cislo1,
+#acf-field-fakta_cislo2,
+#acf-field-fakta_cislo3,
+#acf-field-fakta_cislo4 {
+  width: 150px;
+}
+
+#acf-fakta_text1,
+#acf-fakta_text2,
+#acf-fakta_text3,
+#acf-fakta_text4 {
+  border: 0 !important;
+  padding-top: 0;
+}
+
+html {
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* Hide for users */
+.user-id-3 #wp-admin-bar-WPML_ALS-default.ab-submenu,
+.user-id-3 #wp-admin-bar-new-content,
+.user-id-3 .wpseo-metabox-buy-premium,
+.user-id-3 #icl_subsubsub,
+.user-id-3 #icl_div,
+.user-id-3 #icl_translations,
+.user-id-3 .column-icl_translations {
+	display: none !important;
+}
+
+/* Admin menu separator visible */
+#adminmenu li.wp-menu-separator {
+  height: 10px;
+  border-bottom: 2px dashed #e2007a;
+}

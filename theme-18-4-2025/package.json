@@ -13,15 +13,11 @@
         "acfblocks:css": "node-sass --output-style compressed scss/acf-blocks.scss css/acf-blocks.css && npm run acfblocksmin",
         "watch-app": "onchange scss/*.scss -- npm run form:css"
     },
+    "dependencies": {},
     "devDependencies": {
+        "node-sass": "^5.0.0",
         "uglify-es": "^3.3.9",
         "uglifycss": "0.0.29",
         "uglifyjs": "^2.4.11"
-    },
-    "dependencies": {
-        "imagemin": "^9.0.1",
-        "imagemin-webp": "^8.0.0",
-        "imagify": "^0.1.0",
-        "sass": "^1.86.3"
     }
 }

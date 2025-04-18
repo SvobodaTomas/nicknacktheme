@@ -1,0 +1,3496 @@
+#regForm {
+
+    .step {
+        display: none;
+        margin-bottom: 2rem;
+
+        &.is-current {
+            display: block;
+        }
+    }
+
+    /*	Buttons
+    ======================================================================== */
+
+    /*	Previous button
+    --------------------------------------- */
+    .go-prev {
+        padding: .3rem;
+        outline: none;
+        color: #fff;
+        border: 0;
+        background: transparent;
+    }
+    &[data-current-step="1"] .go-prev {
+        visibility: hidden;
+    }
+
+    /*	Next button
+    --------------------------------------- */
+    .go-next {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: transparent;
+        color: #fff;
+        border: 2px solid #fff;
+        padding: .3rem 5rem;
+        outline: none;
+        z-index: 1;
+    }
+}
+
+/*
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+   [ - Forms - ]
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+*/
+
+/* NEW FORMS */
+.form-product-definition,
+.form-product-definition-contact {
+    /*background: #e2007a;*/
+    color: #fff;
+
+    ul {
+        list-style: none;
+    }
+
+
+    /*	Form page footer
+    ======================================================================== */
+    .gform_page_footer {
+
+        .gform_previous_button {
+            background: transparent;
+            color: white;
+            height: 40px;
+            // margin: 0;
+            padding: .3rem;
+            outline: none;
+
+            &:hover {
+                color: #272727;
+            }
+
+            @media screen and (max-width: 640px) {
+                display: block;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+        }
+
+        .gform_next_button {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: transparent;
+            color: #fff;
+            height: 40px;
+            border: 2px solid #fff;
+            // margin: 0;
+            padding: .3rem 5rem;
+            outline: none;
+            z-index: 1;
+
+            &:hover {
+                color: #272727;
+                background: #fff;
+            }
+
+            @media screen and (max-width: 640px) {
+                position: relative;
+                padding: .5rem;
+            }
+        }
+    }
+}
+
+#go-to-contact-form {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 40px;
+    margin-top: 1.8rem;
+    padding: .3rem 5rem;
+    border: 2px solid #fff;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    z-index: 1;
+
+    &:hover {
+        color: #272727;
+        background: #fff;
+    }
+
+    @media screen and (max-width: 640px) {
+        #go-to-contact-form {
+            position: relative;
+            padding: .5rem;
+        }
+    }
+}
+
+.form-product-definition .gform_page:nth-child(1) .gform_next_button + .gform_ajax_spinner {
+    bottom: -20px;
+}
+
+
+.form-product-definition {
+    $hotcup-basic-size: 130px;
+
+    .gfield {
+
+        /*	Radios
+        --------------------------------------- */
+        .gfield_radio {
+
+            label {
+                font-weight: 600;
+                font-size: 1.4rem;
+                transition: all 0.2s ease;
+            }
+        }
+
+        /*	This field should be as flex
+        --------------------------------------- */
+        &.is-flex {
+
+            .gfield_radio {
+                display: flex;
+
+                li {
+                    flex-grow: 1;
+                    text-align: center;
+                }
+            }
+
+            // 4 items on row
+            &.col-4 {
+
+                .gfield_radio li {
+                    flex-basis: 25%;
+                }
+            }
+
+            // 3 items on row
+            &.col-3 {
+
+                .gfield_radio li {
+                    flex-basis: 33.33%;
+                }
+            }
+
+            // 2 items on row
+            &.col-2 {
+
+                .gfield_radio li {
+                    flex-basis: 50%;
+                }
+            }
+        }
+
+        /*	This field has cup image in its options
+        --------------------------------------- */
+        &.has-cup-img .gfield_radio label {
+            padding-top: 250px;
+        }
+
+        /*	This field should have label hidden
+        --------------------------------------- */
+        &.hide-label .gfield_label {
+            display: none;
+        }
+
+        /*	This field shoul have radio hidden
+        --------------------------------------- */
+        &.hide-radio .gfield_radio input[type="radio"] {
+            opacity: 0;
+            position: absolute;
+        }
+    }
+
+
+    // ✓ Checkmark for radios
+    .gfield_radio input:checked + label::after {
+        content: '\2714';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 35px;
+        height: 35px;
+        background: rgb(94,179,121);
+        border-radius: 50%;
+        color: #fff;
+        z-index: 2;
+    }
+
+
+    /*	Product type selection (NickNack vs HotCup)
+    ======================================================================== */
+    .product-selection {
+
+        label {
+            margin: 0 1rem;
+            width: 100%;
+        }
+
+        li {
+
+            // NickNack
+            &:first-child {
+
+                label {
+                    background: url('../images/form-cups/cup_normal.svg') no-repeat bottom center;
+                    background-size: auto 240px;
+                    background-position-y: calc(100% - 2.5rem);
+                }
+
+                label:hover,
+                input:checked + label {
+                    background: url('../images/form-cups/cup_normal_hover_white.svg') no-repeat bottom center;
+                    background-size: auto 240px;
+                    background-position-y: calc(100% - 2.5rem);
+                }
+            }
+
+            // Hotcup
+            &:last-child {
+
+                label {
+                    background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                    background-size: auto $hotcup-basic-size;
+                    background-position-y: calc(100% - 2.5rem);
+                }
+
+                label:hover,
+                input:checked + label {
+                    background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                    background-size: auto $hotcup-basic-size;
+                    background-position-y: calc(100% - 2.5rem);
+                }
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+            }
+        }
+    }
+
+
+
+    /*	NickNack
+    ======================================================================== */
+
+    /*	Volume
+    --------------------------------------- */
+    .volume-selection .gfield_radio {
+
+        label {
+            margin: 0 1rem;
+            width: 100%;
+            // font-size: 1.4rem;
+            // font-weight: 600;
+            background: url('../images/form-cups/cup_normal.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+
+        label:hover,
+        input:checked + label {
+            background: url('../images/form-cups/cup_normal_hover_white.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+
+        li {
+
+            &:nth-child(2) {
+
+                // Bg position
+                label,
+                input:checked + label {
+                    background-size: auto 200px;
+                    background-position-y: 40px;
+                }
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 55%;
+                }
+            }
+
+            &:nth-child(3) {
+
+                // Bg position
+                label,
+                input:checked + label {
+                    background-size: auto 160px;
+                    background-position-y: 80px;
+                }
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 60%;
+                }
+            }
+
+            &:nth-child(4) {
+
+                // Bg position
+                label,
+                input:checked + label {
+                    background-size: auto 140px;
+                    background-position-y: 100px;
+                }
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+            }
+        }
+    }
+
+    /*	Variant
+    --------------------------------------- */
+    .variant-selection .gfield_radio {
+
+        label {
+            /* margin: 0 1rem; */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin: 0;
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: lowercase;
+        }
+
+        input[value="potisk"] + label {
+            background: url('../images/form-cups/potisk.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+
+        input[value="potisk"] + label:hover,
+        input[value="potisk"]:checked + label {
+            background: url('../images/form-cups/potisk_hover.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+
+        input[value="bez-potisku"] + label {
+            background: url('../images/form-cups/bez-potisku.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+
+        input[value="bez-potisku"] + label:hover,
+        input[value="bez-potisku"]:checked + label {
+            background: url('../images/form-cups/bez-potisku_hover.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: 0;
+        }
+    }
+
+    /*	Product - sitotisk
+    --------------------------------------- */
+    .potisk-cup-selection .gfield_radio {
+
+        label {
+            /* margin: 0 1rem; */
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin: 0;
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        // Transparent cup
+        input[value="transparentni-kelimek"] + label {
+            content: '';
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            background: url('../images/form-cups/product_sitotisk-transparent.png') no-repeat bottom center;
+            background-size: auto 100%;
+            /* background-position-y: calc(100% - 20px); */
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                background: url('../images/form-cups/product_sitotisk-transparent_hover.svg') no-repeat bottom center;
+                background-size: auto 100%;
+                /* background-position-y: calc(100% - 20px); */
+                z-index: 2;
+                opacity: 0;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="transparentni-kelimek"] + label:hover::before,
+        input[value="transparentni-kelimek"]:checked + label::before {
+            opacity: 0.5;
+        }
+
+        // Colored cup
+        input[value="barevny-kelimek"] + label {
+            content: '';
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            background: url('../images/form-cups/product_sitotisk-color.png') no-repeat bottom center;
+            background-size: auto 100%;
+            /* background-position-y: calc(100% - 20px); */
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                background: url('../images/form-cups/product_sitotisk-color_hover.svg') no-repeat bottom center;
+                background-size: auto 100%;
+                /* background-position-y: calc(100% - 20px); */
+                z-index: 2;
+                opacity: 0;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="barevny-kelimek"] + label:hover::before,
+        input[value="barevny-kelimek"]:checked + label::before {
+            opacity: 1;
+        }
+    }
+
+    /*	Product - bez potisku
+    --------------------------------------- */
+    .bez-potisku-product-selection .gfield_radio {
+
+        label {
+            margin: 0 1rem;
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+            padding-left: .25rem;
+            padding-right: .25rem;
+            position: relative;
+
+            p {
+                font-size: 0.8rem;
+                max-width: 250px;
+                margin: 1rem auto 0 auto;
+                font-weight: 600;
+                margin: 0;
+                padding-left: .25rem;
+                padding-right: .25rem;
+            }
+        }
+
+        // Bez potisku - colored
+        input[value="barevny"] + label {
+            content: '';
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            // background: url('../images/form-cups/product_barevny.png') no-repeat bottom center;
+            background: url('../images/form-cups/cup_color.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: calc(100% - 2.5rem);
+            /* background-position-y: calc(100% - 20px); */
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                // background: url('../images/form-cups/product_barevny_hover.svg') no-repeat bottom center;
+                background: url('../images/form-cups/cup_color_hover.svg') no-repeat bottom center;
+                background-size: auto 240px;
+                background-position-y: calc(100% - 2.5rem);
+                /* background-position-y: calc(100% - 20px); */
+                z-index: 1;
+                opacity: 0;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="barevny"] + label:hover::before,
+        input[value="barevny"]:checked + label::before {
+            opacity: 1;
+        }
+
+        // Bez potisku - unvierzal
+        input[value="univerzalni"] + label {
+            content: '';
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            // background: url('../images/form-cups/product_uni.png') no-repeat bottom center;
+            // background-size: auto 100%;
+            /* background-position-y: calc(100% - 20px); */
+            background: url('../images/form-cups/cup_normal.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: calc(100% - 2.5rem);
+            z-index: 1;
+
+            // &::before {
+            //     content: '';
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            //     height: 250px;
+            //     width: 100%;
+            //     background: url('../images/form-cups/product_uni_hover.svg') no-repeat bottom center;
+            //     background-size: auto 100%;
+            //     /* background-position-y: calc(100% - 20px); */
+            //     z-index: 1;
+            //     opacity: 0;
+            //     transition: all 0.2s ease;
+            // }
+        }
+
+        input[value="univerzalni"] + label:hover,
+        input[value="univerzalni"]:checked + label {
+            // opacity: 0.5;
+            background: url('../images/form-cups/cup_normal_hover_white.svg') no-repeat bottom center;
+            background-size: auto 240px;
+            background-position-y: calc(100% - 2.5rem);
+        }
+
+        // Bez potisku - Sada
+        input[value="sada"] + label {
+            content: '';
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            background: url('../images/form-cups/product_party-sada.png') no-repeat bottom center;
+            background-size: auto 100%;
+            /* background-position-y: calc(100% - 20px); */
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                background: url('../images/form-cups/product_party-sada_hover.svg') no-repeat bottom center;
+                background-size: auto 100%;
+                /* background-position-y: calc(100% - 20px); */
+                z-index: 1;
+                opacity: 0;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="sada"] + label:hover::before,
+        input[value="sada"]:checked + label::before {
+            opacity: 0.5;
+        }
+    }
+
+    /*	Product - s potiskem
+    --------------------------------------- */
+    .potisk-product-selection .gfield_radio {
+
+        label {
+            margin: 0 1rem;
+            width: 100%;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+            padding-left: .25rem;
+            padding-right: .25rem;
+
+            p {
+                font-size: 0.8rem;
+                max-width: 250px;
+                margin: 1rem auto 0 auto;
+                font-weight: 600;
+                /* margin: 0; */
+                padding-left: .25rem;
+                padding-right: .25rem;
+            }
+        }
+
+        // IML
+        input[value="iml"] + label {
+            content: '';
+            position: relative;
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            background: url('../images/form-cups/product_iml.png') no-repeat bottom center;
+            background-size: auto 100%;
+            /* background-position-y: calc(100% - 20px); */
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                background: url('../images/form-cups/product_iml_hover.svg') no-repeat bottom center;
+                background-size: auto 100%;
+                /* background-position-y: calc(100% - 20px); */
+                opacity: 0;
+                z-index: 1;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="iml"] + label:hover::before,
+        input[value="iml"]:checked + label::before {
+            opacity: 0.5;
+        }
+
+        // Sitotisk
+        input[value="sitotisk"] + label {
+            content: '';
+            position: relative;
+            /* position: absolute; */
+            top: 0;
+            left: 0;
+            height: 250px;
+            width: 100%;
+            background: url('../images/form-cups/product_sitotisk.png') no-repeat bottom center;
+            background-size: auto 100%;
+            /* background-position-y: 0; */
+            margin: 0;
+            padding-left: .25rem;
+            padding-right: .25rem;
+            z-index: 1;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 250px;
+                width: 100%;
+                background: url('../images/form-cups/product_sitotisk_hover.svg') no-repeat bottom center;
+                background-size: auto 100%;
+                /* background-position-y: 0; */
+                margin: 0;
+                padding-left: .25rem;
+                padding-right: .25rem;
+                opacity: 0;
+                z-index: 1;
+                transition: all 0.2s ease;
+            }
+        }
+
+        input[value="sitotisk"] + label:hover::before,
+        input[value="sitotisk"]:checked + label::before {
+            opacity: 0.5;
+        }
+    }
+
+
+
+
+    /*	HotCup
+    ======================================================================== */
+
+    /*	Volume
+    --------------------------------------- */
+    .volume-hotcup-selection {
+
+        .gfield_radio {
+
+            // Bg position
+            label {
+                margin: 0 1rem;
+                margin: 0;
+                width: 100%;
+                // font-size: 1.4rem;
+                // font-weight: 600;
+                background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                background-size: auto $hotcup-basic-size;
+                background-position-y: calc(100% - 2.5rem);
+            }
+
+            // Bg position hover / checked
+            label:hover,
+            input:checked + label {
+                background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                background-size: auto $hotcup-basic-size;
+                background-position-y: calc(100% - 2.5rem);
+            }
+
+            li {
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+
+                // 0,3l
+                &:nth-child(2) {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.8};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.8};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Checkmark position
+                    input:checked + label::after {
+                        top: 68%;
+                    }
+                }
+
+                // 0,2l
+                &:nth-child(3) {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        // background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.7};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        // background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.7};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Checkmark position
+                    input:checked + label::after {
+                        top: 70%;
+                    }
+                }
+
+                // 0,1l
+                &:nth-child(4) {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup-nocap.svg') no-repeat bottom center;
+                        // background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.6};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup-nocap_hover.svg') no-repeat bottom center;
+                        // background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto #{$hotcup-basic-size * 0.6};
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Checkmark position
+                    input:checked + label::after {
+                        top: 70%;
+                    }
+                }
+            }
+        }
+    }
+
+    /*	Print
+    --------------------------------------- */
+    .variant-hotcup-selection {
+
+        .gfield_radio {
+
+            li {
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+
+                &:first-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup-potisk.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup-potisk_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+                }
+
+                &:last-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+                }
+            }
+        }
+    }
+
+    /*	Color version
+    --------------------------------------- */
+    .hotcup-color-version-print,
+    .hotcup-color-version-noprint {
+
+        .gfield_radio {
+
+            li {
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+
+                &:first-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup-potisk.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 5.15rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup-potisk_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 5.15rem);
+                    }
+                }
+
+                &:last-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup-color.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup-color_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+                }
+            }
+        }
+    }
+    .hotcup-color-version-noprint {
+
+        .gfield_radio {
+
+            li {
+
+                &:first-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 5.15rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 5.15rem);
+                    }
+                }
+            }
+        }
+    }
+
+    /*	Cap x No-Cap
+    --------------------------------------- */
+    .hotcup-cap-selection {
+
+        .gfield_radio {
+
+            li {
+
+                // Checkmark position
+                input:checked + label::after {
+                    top: 65%;
+                }
+
+                label {
+                    width: 100%;
+                }
+
+                // With a Cap
+                &:first-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+                }
+
+                // No Cap
+                &:last-child {
+
+                    // Bg position
+                    label {
+                        background: url('../images/form-cups/hotcup-nocap.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+
+                    // Bg position hover / checked
+                    label:hover,
+                    input:checked + label {
+                        background: url('../images/form-cups/hotcup-nocap_hover.svg') no-repeat bottom center;
+                        background-size: auto $hotcup-basic-size;
+                        background-position-y: calc(100% - 2.5rem);
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    /*	Validation error
+    ======================================================================== */
+    .gform_fields > .gfield_error.footer-error > .validation_message {
+        display: inline-block;
+        background: #fff;
+        padding: 2px !important;
+        margin-top: 2rem !important;
+        font-size: 0.875rem;
+    }
+
+
+    /*	Form page footer
+    ======================================================================== */
+    .gform_page_footer {
+        position: relative;
+        margin-top: 2rem;
+        clear: both;
+        min-height: calc(40px + 1.25rem);   // Height and margin of the next button
+    }
+    /*	Last page - hide back button
+    --------------------------------------- */
+    .another-product-question .gform_page_footer .gform_previous_button {
+        display: none;
+    }
+}
+
+
+
+.form-product-definition-contact {
+
+    .gform_page_footer {
+        border-top: 2px solid #fff;
+        margin-top: 2rem;
+        padding-top: 2rem;
+    }
+}
+
+
+
+@media screen and (max-width: 400px) {
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio label {
+        padding-top: 0;
+        background: none !important;
+        font-size: 1rem !important;
+        width: auto !important;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio label::before,
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio label::before,
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio label::before,
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio label::before {
+        background: none !important;
+    }
+}
+
+.form-product-definition .gfield_radio input:checked + label,
+.form-product-definition .gfield_radio input:not([disabled]) + label:hover {
+    color: #272727 !important;
+    position: relative;
+}
+
+
+/* - spinner */
+.gform_ajax_spinner {
+    text-align: center;
+    transform: translate(-50%,-50%);
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: auto;
+    left: calc(50% - 7px);
+    bottom: -10px;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+.gform_ajax_spinner.add-product-plus,
+.gform_ajax_spinner.change-product-spinner,
+.gform_ajax_spinner.uploading-files {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    top: 3px;
+}
+.gform_ajax_spinner.uploading-files {
+    margin-right: 5px;
+}
+.gform_ajax_spinner.change-product-spinner {
+    background: black;
+}
+.gform_ajax_spinner.form-submitting-spinner {
+    z-index: 100001;
+    left: 50%;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    box-shadow: 0px 0px 45px #e2007a;
+    display: none;
+}
+#inquiryForm.submitting + .gform_ajax_spinner.form-submitting-spinner {
+    display: block;
+}
+.form-add-product:hover .gform_ajax_spinner.add-product-plus,
+.form-add-product:focus .gform_ajax_spinner.add-product-plus {
+    background-color: lightgray;
+}
+
+
+.form-product-definition label,
+.form-product-definition-contact label {
+    color: #fff !important;
+}
+.form-product-definition .page_heading,
+.form-product-definition-contact .page_heading {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 1.4rem;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem
+}
+.form-product-definition .page_heading .number,
+.form-product-definition-contact .page_heading .number {
+    color: #000;
+    margin-right: 20px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    line-height: 42px;
+}
+.form-product-definition .gfield_description.validation_message,
+.form-product-definition-contact .gfield_description.validation_message {
+    color: black !important;
+    right: 5px;
+}
+.form-product-definition .gfield_error input,
+.form-product-definition-contact .gfield_error input {
+    margin-bottom: 0;
+}
+.form-product-definition .cup-color-sample-wrapper .validation_message {
+    position: absolute !important;
+    line-height: 1;
+    bottom: .7rem;  /* input margin bottom + 0.2rem */
+    /* left: calc(150px + 10px); */
+    right: calc(5px + 15px + 25px); /* 5px reservation, 15px input margin right, 25px input padding right */
+    font-size: 0.875rem;
+}
+.form-product-definition_wrapper.gform_wrapper ul li.gfield.cup-color-sample-wrapper {
+    position: relative;
+    margin-left: 50px !important;
+    width: calc(50% - 50px);
+    display: inline-block;
+}
+.form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .gfield_label {
+    display: inline-block;
+    /* margin-left: 10px!important; */
+    width: 150px;
+    vertical-align: middle;
+    line-height: 1.2;
+}
+@media screen and (max-width:450px) {
+    .form-product-definition_wrapper.gform_wrapper ul li.gfield.cup-color-sample-wrapper {
+        display: block;
+        width: calc(100% - 50px - 15px);
+        margin-right: 15px !important;
+    }
+    .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .gfield_label {
+        width: 100%;
+    }
+    .form-product-definition .cup-color-sample-wrapper .validation_message {
+        bottom: 0.2rem;
+    }
+}
+.cup-color-sample-wrapper .ginput_container {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 15px;
+    position: relative;
+    padding-right: 25px;
+    visibility: hidden;
+    width: calc(100% - 175px);
+}
+@media screen and (min-width:935px) and (max-width:1100px), (max-width:770px) {
+    .cup-color-sample-wrapper .ginput_container {
+        margin-left: 0;
+        width: 100%;
+        max-width: 150px;
+        display: block;
+    }
+    .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper.gfield_error .validation_message {
+        right: auto;
+        left: 0;
+        margin-left: 5px !important;
+    }
+}
+.cup-color-sample-wrapper.color-selected .ginput_container {
+    visibility: visible;
+}
+.cup-color-sample-wrapper .ginput_container::after {
+    position: absolute;
+    right: 0;
+    content: 'ks';
+    display: inline-block;
+    /* top: calc(50% - .5rem); */
+    top: 20px;
+    transform: translateY(-50%);
+}
+.cup-color-sample-wrapper .gfield_description:not(.validation_message) {
+    position: absolute;
+    left: -40px;
+    top: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: lightgray;
+    padding: 3px;
+}
+.cup-color-sample-wrapper .gfield_description.selected {
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+.cup-color-sample-wrapper.color-selected .gfield_description:not(.validation_message) {
+    background: white;
+    border-radius: 50%;
+    padding: 5px;
+}
+.cup-color-sample-wrapper.color-selected .gfield_label,
+.cup-color-sample-wrapper.color-selected .ginput_container_number::after {
+    font-weight: bold;
+}
+.cup-color-sample-wrapper:not(.color-selected).gfield_error .validation_message {
+    display: none;
+}
+.cup-color-sample-wrapper .cup-color-sample {
+    /* border: 3px solid #e2007a; */
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: relative;
+    cursor: pointer;
+    border-radius: 50%;
+}
+/*.cup-color-sample-wrapper .cup-color-sample::before {
+    position: absolute;
+    content: "\2714";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-shadow: 0px 0px 4px #5a5a5a;
+    cursor: pointer;
+    padding: 0 3px;
+    display: none;
+}
+.cup-color-sample-wrapper.color-selected .cup-color-sample::before {
+    display: block;
+}*/
+.form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .ginput_container_number input {
+    width: 100%;
+    padding: 10px !important;
+    font-size: 15px;
+}
+.form-product-definition_wrapper.gform_wrapper .gfield_error .gfield_label {
+    color: white !important;
+}
+.form-product-definition_wrapper.gform_wrapper .gfield_html a,
+.form-product-definition-contact_wrapper.gform_wrapper .gfield_html a {
+    color: white;
+    text-decoration: underline;
+}
+.form-product-definition_wrapper.gform_wrapper .gfield_html a:hover,
+.form-product-definition-contact_wrapper.gform_wrapper .gfield_html a:hover {
+    color: #000;
+}
+.form-product-definition_wrapper.gform_wrapper .validation_message,
+.form-product-definition-contact_wrapper.gform_wrapper .validation_message,
+.ginput_preview a {
+    color: #000 !important;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .validation_message {
+    background: white;
+    padding-left: 3px !important;
+    font-size: 0.875rem;
+}
+.form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .validation_message {
+    margin-left: 10px !important;
+}
+.form-product-definition_wrapper.gform_wrapper .ginput_container_number input {
+    height: 40px;
+    font-size: 16px;
+    /* box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27); */
+    outline: none;
+    /* border: none; */
+    /* padding: 10px 20px !important; */
+
+    background: transparent;
+    box-shadow: none;
+    color: white;
+    text-align: center;
+    border: 2px solid white;
+}
+.form-product-definition_wrapper.gform_wrapper .ginput_container_number input::placeholder {
+    color: white !important;
+    font-style: italic;
+}
+.form-product-definition_wrapper.gform_wrapper .ginput_container_number input::-moz-placeholder {
+    color: white !important;
+    font-style: italic;
+}
+.form-product-definition_wrapper.gform_wrapper .ginput_container_number input::-webkit-input-placeholder {
+    color: white !important;
+    font-style: italic;
+}
+
+/* - contact form */
+.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(2),
+.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(3),
+.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4),
+.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(5) {
+    /*width: 50% !important;
+    display: block;*/
+    max-width: 400px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+/*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(2) input,
+.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(3) input,*/
+.form-product-definition-contact_wrapper .gform_fields .gfield input,
+.form-product-definition-contact_wrapper .gform_fields .gfield textarea {
+    height: 40px;
+    font-size: 16px;
+    box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27);
+    outline: none;
+    border: none;
+    padding: 10px 20px !important;
+    background: transparent;
+    box-shadow: none;
+    border: 2px solid white;
+    text-align: center;
+    color: white;
+}
+.form-product-definition-contact_wrapper .gform_fields .gfield textarea {
+    min-height: 170px;
+}
+/*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) {
+    width: 50% !important;
+    float: right;
+    padding-left: 30px !important;
+    top: -266px;
+    height: 0;
+    position: relative;
+}*/
+/*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) .ginput_container {
+    height: 179px;
+    margin-top: 71px !important;
+}*/
+/*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) .ginput_container textarea {
+    height: 179px !important;
+    min-height: unset;
+    font-size: 18px;
+    box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27);
+    outline: none;
+    border: none;
+    padding: 10px 20px !important;
+    background: transparent;
+    box-shadow: none;
+    border: 2px solid white;
+}*/
+#form-summary-wrapper {
+    display: none;
+}
+#form-summary-wrapper .form-summary-heading {
+    text-align: center;
+    color: white;
+    font-size: 1.4rem;
+    margin-top: 2rem;
+}
+#form-summary-wrapper .table-scroll {
+    width: 100%;
+}
+#show-form-summary {
+    text-transform: lowercase;
+    font-size: 18px !important;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    padding: .3rem 5rem;
+    outline: none;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#show-form-summary:hover {
+    background: white;
+    color: #272727;
+}
+@media screen and (max-width: 640px) {
+    #show-form-summary {
+        padding: .5rem;
+    }
+}
+/* #form-summary a {
+    color: #e2007a;
+} */
+#form-summary-wrapper table {
+    width: 100%;
+}
+#form-summary {
+    width: 100%;
+    border: 0;
+}
+#form-summary tr th:nth-child(2),
+#form-summary tr td:nth-child(2) {
+    display: none;
+}
+.add-other-product-wrapper {
+    text-align: center;
+}
+.form-add-product {
+    text-transform: lowercase;
+    font-size: 16px !important;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    padding: .3rem 5rem;
+    outline: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+    text-decoration: none !important;
+    transition: background-color 300ms ease-out;
+}
+.form-add-product:hover,
+.form-add-product:focus {
+    background: white;
+    color: #272727 !important;
+}
+@media screen and (max-width:400px) {
+    .form-add-product {
+        padding: .3rem .5rem;
+    }
+}
+.form-product-definition-contact_wrapper input[type="submit"] {
+    padding: 20px 54px 20px 54px;
+    text-transform: uppercase;
+    font-size: 20px !important;
+    border-radius: 0 !important;
+    background: #3cb084;
+    
+    text-transform: lowercase;
+    font-size: 18px !important;
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    padding: .3rem 5rem;
+    outline: none;
+}
+.form-product-definition-contact_wrapper input[type="submit"]:hover {
+    background: white;
+    color: #272727;
+}
+@media screen and (max-width: 500px) {
+    .form-product-definition-contact_wrapper input[type="submit"] {
+        width: 100%;
+        padding: .5rem;
+    }
+}
+.form-product-definition-contact_wrapper .gform_footer {
+    text-align: center;
+    border-top: 2px solid;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    display: none;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .remove-product,
+.form-product-definition-contact_wrapper.gform_wrapper .change-product {
+    color: white;
+    text-decoration: none !important;
+    padding: 0 5px;
+    margin: 3px;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .change-product {
+    background: transparent url('../images/form-cups/change-button.svg') no-repeat center center;
+    background-size: contain;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .change-product.no-bg {
+    background: transparent;
+    padding: 0;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .remove-product {
+    background: transparent url('../images/form-cups/remove-button.svg') no-repeat center center;
+    background-size: contain;
+}
+.form-product-definition-contact_wrapper .gdpr {
+    line-height: 1.3;
+    margin-bottom: 1rem;
+}
+.form-product-definition .bad-cup-volume {
+    font-size: 0.9rem;
+    /* margin: 0 1rem; */
+    width: 100%;
+}
+.form-product-definition-contact_wrapper .gfield_required {
+    display: none;
+}
+
+/* Downloads + uploads */
+/*.gform_wrapper .form-product-definition ul li.gfield.downloads-wrapper {
+    width: 61%;
+    padding-right: 6% !important;
+    background: url(./images/icon_triple_arrow.png) no-repeat 90% center;
+    float: left;
+    margin-bottom: 1rem !important;
+}*/
+.form-product-definition_wrapper.gform_wrapper .downloads-wrapper {
+    margin-top: 2rem !important;
+}
+.form-product-definition .downloads-wrapper h3,
+.form-product-definition .uploads-wrapper-heading h3 {
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 1.4rem;
+}
+.form-product-definition .downloads {
+    list-style: none !important;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 7px;
+    font-weight: 500;
+    border-top: 2px solid white;
+    padding-top: 2rem !important;
+    padding-bottom: 3rem !important;
+    text-align: center;
+}
+@media screen and (max-width: 640px) {
+    .form-product-definition .downloads div.columns {
+        padding-top: 0.6rem;
+    }
+}
+.form-product-definition .downloads div:not(.columns) {
+    text-transform: lowercase;
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+.form-product-definition .downloads small {
+    color: #fe90d4;
+}
+/*.form-product-definition .downloads li {
+    list-style: none !important;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 7px;
+    font-weight: 500;
+}*/
+.form-product-definition .downloads a:hover {
+    color: #000;
+}
+.form-product-definition .uploads-wrapper {
+    text-align: center;
+}
+/*.form-product-definition .uploads-wrapper-heading {
+    width: 39%;
+    float: right;
+}*/
+.form-product-definition .uploads-wrapper .ginput_container_fileupload {
+    display: inline-block;
+}
+.form-product-definition .uploads-wrapper .gform_button_select_files {
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 10px 15px;
+    background: #aaa;
+    transition: 0.2s ease-in-out;
+    display: inline-block;
+    margin-left: 2rem;
+    outline: none;
+}
+.form-product-definition .uploads-wrapper .gform_button_select_files:hover {
+    background: #272727;
+}
+.form-product-definition .uploads-wrapper .gfield_label {
+    font-weight: 600;
+    font-size: 1.4rem;
+    text-transform: lowercase;
+    display: inline-block;
+}
+.form-product-definition .uploads-wrapper .gfield_description {
+    line-height: 1.2;
+    font-size: 14px;
+    color: #fe90d4;
+}
+.form-product-definition .validation_error,
+.form-product-definition-contact .validation_error {
+    display: none;
+}
+
+/* - disabled radios */
+input[type="radio"][disabled="disabled"] + label,
+input[type="radio"][disabled="disabled"] + label + .bad-cup-volume {
+    opacity: 0.5;
+    cursor: no-drop;
+}
+/*.form-product-definition .uploads-wrapper input[type="file"] {
+    box-shadow: none;
+    color: #fff;
+    width: 90%;
+    float: right;
+    opacity: 0;
+    padding: 0 !important;
+}*/
+.uploads-file-text {
+    display: block;
+    text-align: left;
+    width: 50%;
+    margin-left: 50%;
+    z-index: -1;
+}
+.form-product-definition .uploads-wrapper .ginput_preview {
+    /* position: absolute; */
+    color: white;
+    font-weight: normal;
+    /* margin-left: calc(50% + 1.3rem); */
+    width: 75%;
+    z-index: 1;
+    margin: auto;
+    text-align: center;
+    line-height: 1.2;
+    font-size: 14px;
+    background: #e2007a;
+}
+.form-product-definition .uploads-wrapper .ginput_preview:last-child {
+    padding-bottom: 1rem;
+}
+.form-product-definition .ginput_preview strong {
+    font-weight: normal;
+}
+.form-product-definition .gform_drop_instructions {
+    display: none;
+}
+
+.custom-cup-amount,
+.motive-amount {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+@media screen and (max-width: 640px) {
+    .custom-cup-amount,
+    .motive-amount {
+        flex-direction: column;
+    }
+    .custom-cup-amount .gfield_label,
+    .motive-amount .gfield_label {
+        order: 1;
+    }
+    .custom-cup-amount .gfield_description:not(.validation_message),
+    .motive-amount .gfield_description:not(.validation_message) {
+        order: 2;
+        position: relative;
+        bottom: .1rem;
+    }
+    .custom-cup-amount .ginput_container,
+    .motive-amount .ginput_container {
+        order: 3;
+    }
+}
+.custom-cup-amount > .gfield_label,
+.custom-cup-amount > .ginput_container_number,
+.motive-amount > .gfield_label,
+.motive-amount > .ginput_container_number {
+    flex-grow: 1;
+}
+.custom-cup-amount > .gfield_label,
+.motive-amount > .gfield_label {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+@media screen and (max-width:450px) {
+    .custom-cup-amount > .gfield_label,
+    .motive-amount > .gfield_label {
+        font-size: 1.2rem;
+    }
+}
+.custom-cup-amount .gfield_description,
+.motive-amount .gfield_description {
+    position: absolute;
+    bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+#reset-product-form-wrapper {
+    text-align: center;
+    margin: 3rem 0;
+}
+/*#reset-product-form {
+    color: white;
+    background: transparent;
+    border: 2px solid white;
+    padding: .3rem 5rem;
+    outline: none;
+}
+#reset-product-form:hover {
+    color: #272727;
+    background: white;
+}*/
+
+#go-to-contact-form-wrapper {
+    border-top: 2px solid white;
+    position: relative;
+    text-align: center;
+}
+@media screen and (max-width: 640px) {
+    #go-to-contact-form-wrapper {
+        position: absolute;
+        margin-top: 40px;
+        border-top: 0;
+        width: 100%;
+    }
+    #go-to-contact-form {
+        left: auto;
+        transform: none;
+    }
+}
+
+.add-product-plus {
+    text-transform: lowercase;
+    background: white;
+    border-radius: 50%;
+    color: #e2007a;
+    padding: 1px 4px 1px;
+    font-size: 0.75rem;
+}
+
+#inquiryForm {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    position: fixed;
+    top: 50% !important;
+    transform: translateY(-50%);
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.reveal-modal .row:not(.header) .columns {
+    padding: 0;
+}
+#inquiryForm.submitting {
+    filter: blur(1px);
+}
+/*#inquiryForm.submitting::before {*/
+#inquiryFormOverlay {
+    display: none;
+}
+#inquiryFormOverlay.submitting {
+    display: block;
+    filter: blur(1px);
+    width: 100%;
+    height: 100%;
+    z-index: 100000;    /* 1 more than modal */
+    background: white;
+    top: 0;
+    left: 0;
+    position: absolute;
+    opacity: 0.5;
+}
+#inquiryForm.submitting::after {
+    z-index: 100001;    /* 1 more than modal overlay */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: fixed;
+    -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+}
+
+.form-product-definition_wrapper.gform_wrapper li.gfield_error input[type=number],
+.form-product-definition_wrapper.gform_wrapper li.gfield_error input[type=text],
+.form-product-definition_wrapper.gform_wrapper li.gfield_error textarea {
+    border-color: white !important;
+    margin-bottom: 0.5rem;
+    border-bottom: 1.5rem solid white;
+    height: calc(40px + 1.5rem);
+}
+.form-product-definition-contact_wrapper.gform_wrapper li.gfield.gfield_error.gfield_contains_required label.gfield_label {
+    margin-top: 0 !important;
+}
+.form-product-definition-contact_wrapper.gform_wrapper li.gfield_error input[type=number],
+.form-product-definition-contact_wrapper.gform_wrapper li.gfield_error input[type=text],
+.form-product-definition-contact_wrapper.gform_wrapper li.gfield_error textarea {
+    border-color: white !important;
+    margin-bottom: 0 !important;
+}
+.form-product-definition-contact_wrapper.gform_wrapper li.gfield_error {
+    margin-bottom: 0.5rem !important;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .gfield.email .gfield_label {
+    display: none;
+}
+
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::placeholder {
+    color: white !important;
+    font-style: italic;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::-moz-placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::-moz-placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::-moz-placeholder {
+    color: white !important;
+    font-style: italic;
+}
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::-webkit-input-placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::-webkit-input-placeholder,
+.form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::-webkit-input-placeholder {
+    color: white !important;
+    font-style: italic;
+}
+
+#contact-summary {
+    font-style: italic;
+    color: #272727;
+    line-height: 1.3;
+    margin: 1rem 0 2rem;
+    font-size: 18px;
+}
+#contact-summary .contact-summary-update {
+    color: white;
+    text-decoration: underline;
+    font-size: 15px;
+}
+#contact-summary .contact-summary-update:hover {
+    color: #000;
+}
+
+#no-product-message {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.field-missing {
+    font-style: italic;
+}
+
+/* - product modal closing */
+.close-reveal-modal.close-product-reveal-modal {
+    background: transparent url('../images/form-cups/close-button.svg') no-repeat center center;
+    background-size: contain;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    width: 27px;
+    height: 27px;
+}
+.close-reveal-modal.close-product-reveal-modal:hover {
+    background: transparent url('../images/form-cups/close-button_hover.svg') no-repeat center center;
+    background-size: contain;
+}
+
+.table-scroll.scrollable {
+    overflow-x: scroll;
+}
+.table-scroll.scrollable #form-summary {
+    margin-bottom: 0;
+}
+.scroll-info {
+    width: 100%;
+    height: 30px;
+    margin-bottom: 1.25rem;
+    background: whitesmoke;
+    border-top: solid 1px #DDDDDD;
+    position: relative;
+}
+.scroll-info::before,
+.scroll-info::after {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    content: '';
+    background: url('../images/form-cups/scroll-arrow-right.svg') no-repeat center center;
+    background-size: contain;
+}
+.scroll-info::before {
+    left: 5px;
+    transform: translateY(-50%) rotate(-180deg);
+}
+.scroll-info::after {
+    right: 5px;
+}
+.table-scroll:not(.scrollable) + .scroll-info {
+    display: none;
+}
+.table-scroll.scrollable + .scroll-info {
+    display: block;
+}
+
+.uploads-summary {
+    display: none;
+}
+.uploads-summary .ginput_container_fileupload {
+    display: none;
+}
+
+.button-form-opener {
+    border: 1px solid #e2007a !important;
+    padding: 4px 5px !important;
+    margin-top: -4px;
+    font-weight: 600;
+    color: #e2007a !important;
+}
+#header .header-contact p .button-form-opener:hover,
+.button-form-opener:hover {
+    background: #e2007a;
+    color: #fff !important;
+}
+.button-form-opener:hover .cls-1 {
+    fill: #fff;
+}
+.header-phone.form-opener .cup-icon,
+.button-form-opener .cup-icon {
+    height: 18px;
+    margin-left: 3px;
+    vertical-align: text-top;
+    fill: #e2007a !important;
+}
+@media screen and (min-width: 1100px) {
+    .button-form-opener {
+        padding: 4px 10px !important;
+    }
+}
+@media screen and (min-width: 1160px) {
+    .button-form-opener {
+        padding: 4px 15px !important;
+    }
+}
+
+#inquiryForm {
+    background: #e2007a;
+    max-width: 1200px !important;
+}
+#inquiryForm .form-header {
+    padding: 30px 0;
+    text-transform: uppercase;
+}
+@media only screen and (max-width: 350px) {
+    #inquiryForm .row:not(.header) .columns {
+        text-align: left;
+    }
+}
+
+.colors-number-validation-message .gfield_label,
+.colors-number-validation-message .ginput_container {
+    display: none;
+}
+.colors-number-validation-message .validation_message {
+    display: inline-block;
+    background: white;
+    padding: 2px !important;
+    margin-top: 2rem !important;
+    font-size: 0.875rem;
+}
+
+
+
+/* NEW FORMS - PL */
+body#lang-pl {
+
+    .form-product-definition,
+    .form-product-definition-contact {
+        /*background: #e2007a;*/
+        color: #fff;
+    }
+    .form-product-definition ul,
+    .form-product-definition-contact ul {
+        list-style: none;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gform_next_button + .gform_ajax_spinner {
+        bottom: -20px;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio,
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio,
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio,
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio {
+        display: flex;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio input[type="radio"],
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio input[type="radio"],
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio input[type="radio"],
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio input[type="radio"] {
+        opacity: 0;
+        position: absolute;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio label,
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio label {
+        padding-top: 250px;
+    }
+    @media screen and (max-width: 400px) {
+        .form-product-definition .gform_page:nth-child(1) .gfield_radio label,
+        .form-product-definition .gform_page:nth-child(2) .gfield_radio label,
+        .form-product-definition .gform_page:nth-child(3) .gfield_radio label,
+        .form-product-definition .gform_page:nth-child(4) .gfield_radio label {
+            padding-top: 0;
+            background: none !important;
+            font-size: 1rem !important;
+            width: auto !important;
+        }
+        .form-product-definition .gform_page:nth-child(1) .gfield_radio label::before,
+        .form-product-definition .gform_page:nth-child(2) .gfield_radio label::before,
+        .form-product-definition .gform_page:nth-child(3) .gfield_radio label::before,
+        .form-product-definition .gform_page:nth-child(4) .gfield_radio label::before {
+            background: none !important;
+        }
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio li,
+    .form-product-definition .gform_page:nth-child(2) .gfield_radio li,
+    .form-product-definition .gform_page:nth-child(3) .gfield_radio li,
+    .form-product-definition .gform_page:nth-child(4) .gfield_radio li {
+        flex-grow: 1;
+        text-align: center;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_label,
+    .form-product-definition .gform_page:nth-child(2) .gfield_label,
+    .form-product-definition .gform_page:nth-child(3) .gfield_label,
+    .form-product-definition .gform_page:nth-child(4) .gfield_label,
+    .form-product-definition .gform_page:nth-child(7) p {
+        margin-bottom: 1rem;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .form-product-definition .gfield_radio label {
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gfield_radio input:checked + label::after {
+        content: '\2714';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 35px;
+        height: 35px;
+        background: rgb(94,179,121);
+        border-radius: 50%;
+        color: #fff;
+        z-index: 2;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio li:nth-child(2) input:checked + label::after {
+        top: 55%;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio li:nth-child(3) input:checked + label::after {
+        top: 60%;
+    }
+    .form-product-definition .gform_page:nth-child(1) .gfield_radio li:nth-child(4) input:checked + label::after {
+        top: 65%;
+    }
+    .form-product-definition .gfield_radio input:checked + label,
+    .form-product-definition .gfield_radio input:not([disabled]) + label:hover {
+        color: #272727 !important;
+        position: relative;
+    }
+
+    /* - hide empty labels */
+    .form-product-definition .volume-selection > .gfield_label,
+    .form-product-definition .variant-selection > .gfield_label,
+    .form-product-definition .potisk-product-selection > .gfield_label,
+    .form-product-definition .bez-potisku-product-selection > .gfield_label {
+        display: none;
+    }
+
+    /* - volume */
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio label {
+        margin: 0 1rem;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: 600;
+        background: url('../images/form-cups/cup_normal.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio label:hover,
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio input:checked + label {
+        background: url('../images/form-cups/cup_normal_hover.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(2) label,
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(2) input:checked + label {
+        background-size: auto 200px;
+        background-position-y: 40px;
+    }
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(3) label,
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(3) input:checked + label {
+        background-size: auto 160px;
+        background-position-y: 80px;
+    }
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(4) label,
+    .form-product-definition .gform_page:nth-child(1) .volume-selection .gfield_radio li:nth-child(4) input:checked + label {
+        background-size: auto 140px;
+        background-position-y: 100px;
+    }
+
+    /* - variant */
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio label {
+        /* margin: 0 1rem; */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin: 0;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-transform: lowercase;
+    }
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="potisk"] + label {
+        background: url('../images/form-cups/potisk.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="potisk"] + label:hover,
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="potisk"]:checked + label {
+        background: url('../images/form-cups/potisk_hover.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="bez-potisku"] + label {
+        background: url('../images/form-cups/bez-potisku.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="bez-potisku"] + label:hover,
+    .form-product-definition .gform_page:nth-child(2) .variant-selection .gfield_radio input[value="bez-potisku"]:checked + label {
+        background: url('../images/form-cups/bez-potisku_hover.svg') no-repeat bottom center;
+        background-size: auto 240px;
+        background-position-y: 0;
+    }
+
+    /* - product - bez potisku */
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio label {
+        margin: 0 1rem;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+        position: relative;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio label p {
+        font-size: 0.8rem;
+        max-width: 250px;
+        margin: 1rem auto 0 auto;
+        font-weight: 600;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+    /*.form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="barevny"] + label {
+        background: url('../images/form-cups/product_barevny.jpg') no-repeat bottom center;
+        background-size: auto 100%;
+        background-position-y: 0;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }*/
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="barevny"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_barevny.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="barevny"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_barevny_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="barevny"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="barevny"]:checked + label::before {
+        opacity: 0.5;
+    }
+    /*.form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="univerzalni"] + label {
+        background: url('../images/form-cups/product_uni.jpg') no-repeat bottom center;
+        background-size: auto 100%;
+        background-position-y: 0;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }*/
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="univerzalni"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_uni.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="univerzalni"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_uni_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="univerzalni"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="univerzalni"]:checked + label::before {
+        opacity: 0.5;
+    }
+    /*.form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="sada"] + label {
+        background: url('../images/form-cups/product_party-sada-otevrena.jpg') no-repeat bottom center;
+        background-size: auto 100%;
+        background-position-y: 0;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }*/
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="sada"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_party-sada.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="sada"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_party-sada_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="sada"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .bez-potisku-product-selection .gfield_radio input[value="sada"]:checked + label::before {
+        opacity: 0.5;
+    }
+
+    /* - product - s potiskem */
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio label {
+        margin: 0 1rem;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio label p {
+        font-size: 0.8rem;
+        max-width: 250px;
+        margin: 1rem auto 0 auto;
+        font-weight: 600;
+        /* margin: 0; */
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"] + label {
+        position: relative;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_iml.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_iml_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        opacity: 0;
+        z-index: 1;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"]:checked + label::before {
+        background: url('../images/form-cups/product_iml.png') no-repeat bottom center;
+        background-size: auto 100%;
+        background-position-y: 0;
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="iml"]:checked + label::before {
+        opacity: 0.5;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"] + label {
+        position: relative;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: 0; */
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: 0; */
+        margin: 0;
+        padding-left: .25rem;
+        padding-right: .25rem;
+        opacity: 0;
+        z-index: 1;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"]:checked + label::before {
+        background: url('../images/form-cups/product_sitotisk.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+    }
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(3) .potisk-product-selection .gfield_radio input[value="sitotisk"]:checked + label::before {
+        background: url('../images/form-cups/product_sitotisk_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        opacity: 0.5;
+    }
+
+    /* - product - sitotisk */
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio label {
+        /* margin: 0 1rem; */
+        padding-left: 1rem;
+        padding-right: 1rem;
+        margin: 0;
+        width: 100%;
+        font-size: 1.4rem;
+        font-weight: 600;
+        position: relative;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="transparentni-kelimek"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk-transparent.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="transparentni-kelimek"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk-transparent_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 2;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="transparentni-kelimek"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="transparentni-kelimek"]:checked + label::before {
+        opacity: 0.5;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="barevny-kelimek"] + label {
+        content: '';
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk-color.png') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 1;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="barevny-kelimek"] + label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 250px;
+        width: 100%;
+        background: url('../images/form-cups/product_sitotisk-color_hover.svg') no-repeat bottom center;
+        background-size: auto 100%;
+        /* background-position-y: calc(100% - 20px); */
+        z-index: 2;
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="barevny-kelimek"] + label:hover::before,
+    .form-product-definition .gform_page:nth-child(4) .potisk-cup-selection .gfield_radio input[value="barevny-kelimek"]:checked + label::before {
+        opacity: 1;
+    }
+
+    /* - spinner */
+    .gform_ajax_spinner {
+        text-align: center;
+        transform: translate(-50%,-50%);
+        width: 15px;
+        height: 15px;
+        background-color: #fff;
+        border-radius: 50%;
+        display: inline-block;
+        position: absolute;
+        top: auto;
+        left: calc(50% - 7px);
+        bottom: -10px;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+    .gform_ajax_spinner.add-product-plus,
+    .gform_ajax_spinner.change-product-spinner,
+    .gform_ajax_spinner.uploading-files {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        top: 3px;
+    }
+    .gform_ajax_spinner.uploading-files {
+        margin-right: 5px;
+    }
+    .gform_ajax_spinner.change-product-spinner {
+        background: black;
+    }
+    .gform_ajax_spinner.form-submitting-spinner {
+        z-index: 100001;
+        left: 50%;
+        top: 50%;
+        width: 30px;
+        height: 30px;
+        position: fixed;
+        box-shadow: 0px 0px 45px #e2007a;
+        display: none;
+    }
+    #inquiryForm.submitting + .gform_ajax_spinner.form-submitting-spinner {
+        display: block;
+    }
+    .form-add-product:hover .gform_ajax_spinner.add-product-plus,
+    .form-add-product:focus .gform_ajax_spinner.add-product-plus {
+        background-color: lightgray;
+    }
+
+    .form-product-definition .gform_page_footer {
+        position: relative;
+        margin-top: 2rem;
+        clear: both;
+        min-height: 40px;
+    }
+    .form-product-definition .gform_page_footer .gform_previous_button,
+    .form-product-definition-contact .gform_page_footer .gform_previous_button {
+        background: transparent;
+        color: white;
+        padding: .3rem;
+        outline: none;
+    }
+    .form-product-definition .gform_page_footer .gform_previous_button:hover,
+    .form-product-definition-contact .gform_page_footer .gform_previous_button:hover {
+        color: #272727;
+    }
+    .form-product-definition .gform_page_footer .gform_next_button,
+    .form-product-definition-contact .gform_page_footer .gform_next_button,
+    #go-to-contact-form {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        background: transparent;
+        border: 2px solid white;
+        padding: .3rem 5rem;
+        outline: none;
+        z-index: 1;
+    }
+    .form-product-definition .gform_page_footer .gform_next_button:hover,
+    .form-product-definition-contact .gform_page_footer .gform_next_button:hover,
+    #go-to-contact-form:hover {
+        color: #272727;
+        background: white;
+    }
+    @media screen and (max-width: 640px) {
+        .form-product-definition .gform_page_footer .gform_previous_button,
+        .form-product-definition-contact .gform_page_footer .gform_previous_button {
+            display: block;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+        .form-product-definition .gform_page_footer .gform_next_button,
+        .form-product-definition-contact .gform_page_footer .gform_next_button,
+        #go-to-contact-form {
+            position: relative;
+            padding: .5rem;
+        }
+    }
+
+    .form-product-definition-contact .gform_page_footer {
+        border-top: 2px solid white;
+        margin-top: 2rem;
+        padding-top: 2rem;
+    }
+
+    .form-product-definition label,
+    .form-product-definition-contact label {
+        color: #fff !important;
+    }
+    .form-product-definition .page_heading,
+    .form-product-definition-contact .page_heading {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: inline-block;
+        font-size: 1.4rem;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 2rem
+    }
+    .form-product-definition .page_heading .number,
+    .form-product-definition-contact .page_heading .number {
+        color: #000;
+        margin-right: 20px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        background: #fff;
+        display: inline-block;
+        text-align: center;
+        font-weight: 600;
+        line-height: 42px;
+    }
+    .form-product-definition .gfield_description.validation_message,
+    .form-product-definition-contact .gfield_description.validation_message {
+        color: black !important;
+        right: 5px;
+    }
+    .form-product-definition .gfield_error input,
+    .form-product-definition-contact .gfield_error input {
+        margin-bottom: 0;
+    }
+    .form-product-definition .cup-color-sample-wrapper .validation_message {
+        position: absolute !important;
+        line-height: 1;
+        bottom: .7rem;  /* input margin bottom + 0.2rem */
+        /* left: calc(150px + 10px); */
+        right: calc(5px + 15px + 25px); /* 5px reservation, 15px input margin right, 25px input padding right */
+        font-size: 0.875rem;
+    }
+    .form-product-definition_wrapper.gform_wrapper ul li.gfield.cup-color-sample-wrapper {
+        position: relative;
+        margin-left: 50px !important;
+        width: calc(50% - 50px);
+        display: inline-block;
+    }
+    .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .gfield_label {
+        display: inline-block;
+        /* margin-left: 10px!important; */
+        width: 150px;
+        vertical-align: middle;
+        line-height: 1.2;
+    }
+    @media screen and (max-width:450px) {
+        .form-product-definition_wrapper.gform_wrapper ul li.gfield.cup-color-sample-wrapper {
+            display: block;
+            width: calc(100% - 50px - 15px);
+            margin-right: 15px !important;
+        }
+        .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .gfield_label {
+            width: 100%;
+        }
+        .form-product-definition .cup-color-sample-wrapper .validation_message {
+            bottom: 0.2rem;
+        }
+    }
+    .cup-color-sample-wrapper .ginput_container {
+        display: inline-block;
+        margin-left: 10px;
+        margin-right: 15px;
+        position: relative;
+        padding-right: 25px;
+        visibility: hidden;
+        width: calc(100% - 175px);
+    }
+    @media screen and (min-width:935px) and (max-width:1100px), (max-width:770px) {
+        .cup-color-sample-wrapper .ginput_container {
+            margin-left: 0;
+            width: 100%;
+            max-width: 150px;
+            display: block;
+        }
+        .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper.gfield_error .validation_message {
+            right: auto;
+            left: 0;
+            margin-left: 5px !important;
+        }
+    }
+    .cup-color-sample-wrapper.color-selected .ginput_container {
+        visibility: visible;
+    }
+    .cup-color-sample-wrapper .ginput_container::after {
+        position: absolute;
+        right: 0;
+        content: 'ks';
+        display: inline-block;
+        /* top: calc(50% - .5rem); */
+        top: 20px;
+        transform: translateY(-50%);
+    }
+    .cup-color-sample-wrapper .gfield_description:not(.validation_message) {
+        position: absolute;
+        left: -40px;
+        top: 5px;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: lightgray;
+        padding: 3px;
+    }
+    .cup-color-sample-wrapper .gfield_description.selected {
+        background: white;
+        border-radius: 50%;
+        padding: 5px;
+    }
+    .cup-color-sample-wrapper.color-selected .gfield_description:not(.validation_message) {
+        background: white;
+        border-radius: 50%;
+        padding: 5px;
+    }
+    .cup-color-sample-wrapper.color-selected .gfield_label,
+    .cup-color-sample-wrapper.color-selected .ginput_container_number::after {
+        font-weight: bold;
+    }
+    .cup-color-sample-wrapper:not(.color-selected).gfield_error .validation_message {
+        display: none;
+    }
+    .cup-color-sample-wrapper .cup-color-sample {
+        /* border: 3px solid #e2007a; */
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        border-radius: 50%;
+    }
+    /*.cup-color-sample-wrapper .cup-color-sample::before {
+        position: absolute;
+        content: "\2714";
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-shadow: 0px 0px 4px #5a5a5a;
+        cursor: pointer;
+        padding: 0 3px;
+        display: none;
+    }
+    .cup-color-sample-wrapper.color-selected .cup-color-sample::before {
+        display: block;
+    }*/
+    .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .ginput_container_number input {
+        width: 100%;
+        padding: 10px !important;
+        font-size: 15px;
+    }
+    .form-product-definition_wrapper.gform_wrapper .gfield_error .gfield_label {
+        color: white !important;
+    }
+    .form-product-definition_wrapper.gform_wrapper .gfield_html a,
+    .form-product-definition-contact_wrapper.gform_wrapper .gfield_html a {
+        color: white;
+        text-decoration: underline;
+    }
+    .form-product-definition_wrapper.gform_wrapper .gfield_html a:hover,
+    .form-product-definition-contact_wrapper.gform_wrapper .gfield_html a:hover {
+        color: #000;
+    }
+    .form-product-definition_wrapper.gform_wrapper .validation_message,
+    .form-product-definition-contact_wrapper.gform_wrapper .validation_message,
+    .ginput_preview a {
+        color: #000 !important;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .validation_message {
+        background: white;
+        padding-left: 3px !important;
+        font-size: 0.875rem;
+    }
+    .form-product-definition_wrapper.gform_wrapper .cup-color-sample-wrapper .validation_message {
+        margin-left: 10px !important;
+    }
+    .form-product-definition_wrapper.gform_wrapper .ginput_container_number input {
+        height: 40px;
+        font-size: 16px;
+        /* box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27); */
+        outline: none;
+        /* border: none; */
+        /* padding: 10px 20px !important; */
+
+        background: transparent;
+        box-shadow: none;
+        color: white;
+        text-align: center;
+        border: 2px solid white;
+    }
+    .form-product-definition_wrapper.gform_wrapper .ginput_container_number input::placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+    .form-product-definition_wrapper.gform_wrapper .ginput_container_number input::-moz-placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+    .form-product-definition_wrapper.gform_wrapper .ginput_container_number input::-webkit-input-placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+
+    /* - contact form */
+    .form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(2),
+    .form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(3),
+    .form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4),
+    .form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(5) {
+        /*width: 50% !important;
+        display: block;*/
+        max-width: 400px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    /*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(2) input,
+    .form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(3) input,*/
+    .form-product-definition-contact_wrapper .gform_fields .gfield input,
+    .form-product-definition-contact_wrapper .gform_fields .gfield textarea {
+        height: 40px;
+        font-size: 16px;
+        box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27);
+        outline: none;
+        border: none;
+        padding: 10px 20px !important;
+        background: transparent;
+        box-shadow: none;
+        border: 2px solid white;
+        text-align: center;
+        color: white;
+    }
+    .form-product-definition-contact_wrapper .gform_fields .gfield textarea {
+        min-height: 170px;
+    }
+    /*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) {
+        width: 50% !important;
+        float: right;
+        padding-left: 30px !important;
+        top: -266px;
+        height: 0;
+        position: relative;
+    }*/
+    /*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) .ginput_container {
+        height: 179px;
+        margin-top: 71px !important;
+    }*/
+    /*.form-product-definition-contact_wrapper .gform_fields .gfield:nth-child(4) .ginput_container textarea {
+        height: 179px !important;
+        min-height: unset;
+        font-size: 18px;
+        box-shadow: inset 3px 3px 9px rgba(0, 0, 0, 0.27);
+        outline: none;
+        border: none;
+        padding: 10px 20px !important;
+        background: transparent;
+        box-shadow: none;
+        border: 2px solid white;
+    }*/
+    #form-summary-wrapper {
+        display: none;
+    }
+    #form-summary-wrapper .form-summary-heading {
+        text-align: center;
+        color: white;
+        font-size: 1.4rem;
+        margin-top: 2rem;
+    }
+    #form-summary-wrapper .table-scroll {
+        width: 100%;
+    }
+    #show-form-summary {
+        text-transform: lowercase;
+        font-size: 18px !important;
+        color: white;
+        background: transparent;
+        border: 2px solid white;
+        padding: .3rem 5rem;
+        outline: none;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    #show-form-summary:hover {
+        background: white;
+        color: #272727;
+    }
+    @media screen and (max-width: 640px) {
+        #show-form-summary {
+            padding: .5rem;
+        }
+    }
+    /* #form-summary a {
+        color: #e2007a;
+    } */
+    #form-summary-wrapper table {
+        width: 100%;
+    }
+    #form-summary {
+        width: 100%;
+        border: 0;
+    }
+    #form-summary tr th:nth-child(2),
+    #form-summary tr td:nth-child(2) {
+        display: none;
+    }
+    .add-other-product-wrapper {
+        text-align: center;
+    }
+    .form-add-product {
+        text-transform: lowercase;
+        font-size: 16px !important;
+        color: white;
+        background: transparent;
+        border: 2px solid white;
+        padding: .3rem 5rem;
+        outline: none;
+        margin-bottom: 1rem;
+        display: inline-block;
+        text-decoration: none !important;
+        transition: background-color 300ms ease-out;
+    }
+    .form-add-product:hover,
+    .form-add-product:focus {
+        background: white;
+        color: #272727 !important;
+    }
+    @media screen and (max-width:400px) {
+        .form-add-product {
+            padding: .3rem .5rem;
+        }
+    }
+    .form-product-definition-contact_wrapper input[type="submit"] {
+        padding: 20px 54px 20px 54px;
+        text-transform: uppercase;
+        font-size: 20px !important;
+        border-radius: 0 !important;
+        background: #3cb084;
+        
+        text-transform: lowercase;
+        font-size: 18px !important;
+        color: white;
+        background: transparent;
+        border: 2px solid white;
+        padding: .3rem 5rem;
+        outline: none;
+    }
+    .form-product-definition-contact_wrapper input[type="submit"]:hover {
+        background: white;
+        color: #272727;
+    }
+    @media screen and (max-width: 500px) {
+        .form-product-definition-contact_wrapper input[type="submit"] {
+            width: 100%;
+            padding: .5rem;
+        }
+    }
+    .form-product-definition-contact_wrapper .gform_footer {
+        text-align: center;
+        border-top: 2px solid;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        display: none;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .remove-product,
+    .form-product-definition-contact_wrapper.gform_wrapper .change-product {
+        color: white;
+        text-decoration: none !important;
+        padding: 0 5px;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .change-product {
+        background: transparent url('../images/form-cups/change-button.svg') no-repeat center center;
+        background-size: contain;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .change-product.no-bg {
+        background: transparent;
+        padding: 0;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .remove-product {
+        background: transparent url('../images/form-cups/remove-button.svg') no-repeat center center;
+        background-size: contain;
+        margin-left: 5px;
+    }
+    .form-product-definition-contact_wrapper .gdpr {
+        line-height: 1.3;
+        margin-bottom: 1rem;
+    }
+    .form-product-definition .bad-cup-volume {
+        font-size: 0.9rem;
+        /* margin: 0 1rem; */
+        width: 100%;
+    }
+    .form-product-definition-contact_wrapper .gfield_required {
+        display: none;
+    }
+
+    /* Downloads + uploads */
+    /*.gform_wrapper .form-product-definition ul li.gfield.downloads-wrapper {
+        width: 61%;
+        padding-right: 6% !important;
+        background: url(./images/icon_triple_arrow.png) no-repeat 90% center;
+        float: left;
+        margin-bottom: 1rem !important;
+    }*/
+    .form-product-definition_wrapper.gform_wrapper .downloads-wrapper {
+        margin-top: 2rem !important;
+    }
+    .form-product-definition .downloads-wrapper h3,
+    .form-product-definition .uploads-wrapper-heading h3 {
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        display: inline-block;
+        font-size: 1.4rem;
+    }
+    .form-product-definition .downloads {
+        list-style: none !important;
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 7px;
+        font-weight: 500;
+        border-top: 2px solid white;
+        padding-top: 2rem !important;
+        padding-bottom: 3rem !important;
+        text-align: center;
+    }
+    @media screen and (max-width: 640px) {
+        .form-product-definition .downloads div.columns {
+            padding-top: 0.6rem;
+        }
+    }
+    .form-product-definition .downloads div:not(.columns) {
+        text-transform: lowercase;
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+    .form-product-definition .downloads small {
+        color: #fe90d4;
+    }
+    /*.form-product-definition .downloads li {
+        list-style: none !important;
+        color: #fff;
+        font-size: 1rem;
+        margin-bottom: 7px;
+        font-weight: 500;
+    }*/
+    .form-product-definition .downloads a:hover {
+        color: #000;
+    }
+    .form-product-definition .uploads-wrapper {
+        text-align: center;
+    }
+    /*.form-product-definition .uploads-wrapper-heading {
+        width: 39%;
+        float: right;
+    }*/
+    .form-product-definition .uploads-wrapper .ginput_container_fileupload {
+        display: inline-block;
+    }
+    .form-product-definition .uploads-wrapper .gform_button_select_files {
+        font-size: 1rem;
+        font-weight: 300;
+        padding: 10px 15px;
+        background: #aaa;
+        transition: 0.2s ease-in-out;
+        display: inline-block;
+        margin-left: 2rem;
+        outline: none;
+    }
+    .form-product-definition .uploads-wrapper .gform_button_select_files:hover {
+        background: #272727;
+    }
+    .form-product-definition .uploads-wrapper .gfield_label {
+        font-weight: 600;
+        font-size: 1.4rem;
+        text-transform: lowercase;
+        display: inline-block;
+    }
+    .form-product-definition .uploads-wrapper .gfield_description {
+        line-height: 1.2;
+        font-size: 14px;
+        color: #fe90d4;
+    }
+    .form-product-definition .validation_error,
+    .form-product-definition-contact .validation_error {
+        display: none;
+    }
+
+    /* - disabled radios */
+    input[type="radio"][disabled="disabled"] + label,
+    input[type="radio"][disabled="disabled"] + label + .bad-cup-volume {
+        opacity: 0.5;
+        cursor: no-drop;
+    }
+    /*.form-product-definition .uploads-wrapper input[type="file"] {
+        box-shadow: none;
+        color: #fff;
+        width: 90%;
+        float: right;
+        opacity: 0;
+        padding: 0 !important;
+    }*/
+    .uploads-file-text {
+        display: block;
+        text-align: left;
+        width: 50%;
+        margin-left: 50%;
+        z-index: -1;
+    }
+    .form-product-definition .uploads-wrapper .ginput_preview {
+        /* position: absolute; */
+        color: white;
+        font-weight: normal;
+        /* margin-left: calc(50% + 1.3rem); */
+        width: 75%;
+        z-index: 1;
+        margin: auto;
+        text-align: center;
+        line-height: 1.2;
+        font-size: 14px;
+        background: #e2007a;
+    }
+    .form-product-definition .uploads-wrapper .ginput_preview:last-child {
+        padding-bottom: 1rem;
+    }
+    .form-product-definition .ginput_preview strong {
+        font-weight: normal;
+    }
+    .form-product-definition .gform_drop_instructions {
+        display: none;
+    }
+
+    .custom-cup-amount,
+    .motive-amount {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+    @media screen and (max-width: 640px) {
+        .custom-cup-amount,
+        .motive-amount {
+            flex-direction: column;
+        }
+        .custom-cup-amount .gfield_label,
+        .motive-amount .gfield_label {
+            order: 1;
+        }
+        .custom-cup-amount .gfield_description:not(.validation_message),
+        .motive-amount .gfield_description:not(.validation_message) {
+            order: 2;
+            position: relative;
+            bottom: .1rem;
+        }
+        .custom-cup-amount .ginput_container,
+        .motive-amount .ginput_container {
+            order: 3;
+        }
+    }
+    .custom-cup-amount > .gfield_label,
+    .custom-cup-amount > .ginput_container_number,
+    .motive-amount > .gfield_label,
+    .motive-amount > .ginput_container_number {
+        flex-grow: 1;
+    }
+    .custom-cup-amount > .gfield_label,
+    .motive-amount > .gfield_label {
+        font-weight: 600;
+        font-size: 1.4rem;
+    }
+    @media screen and (max-width:450px) {
+        .custom-cup-amount > .gfield_label,
+        .motive-amount > .gfield_label {
+            font-size: 1.2rem;
+        }
+    }
+    .custom-cup-amount .gfield_description,
+    .motive-amount .gfield_description {
+        position: absolute;
+        bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    #reset-product-form-wrapper {
+        text-align: center;
+        margin: 3rem 0;
+    }
+    /*#reset-product-form {
+        color: white;
+        background: transparent;
+        border: 2px solid white;
+        padding: .3rem 5rem;
+        outline: none;
+    }
+    #reset-product-form:hover {
+        color: #272727;
+        background: white;
+    }*/
+
+    #go-to-contact-form-wrapper {
+        border-top: 2px solid white;
+        position: relative;
+        text-align: center;
+    }
+    #go-to-contact-form {
+        margin-top: 1.8rem;
+    }
+    @media screen and (max-width: 640px) {
+        #go-to-contact-form-wrapper {
+            position: absolute;
+            margin-top: 40px;
+            border-top: 0;
+            width: 100%;
+        }
+        #go-to-contact-form {
+            left: auto;
+            transform: none;
+        }
+    }
+
+    .add-product-plus {
+        text-transform: lowercase;
+        background: white;
+        border-radius: 50%;
+        color: #e2007a;
+        padding: 1px 4px 1px;
+        font-size: 0.75rem;
+    }
+
+    #inquiryForm {
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        position: fixed;
+        top: 50% !important;
+        transform: translateY(-50%);
+        max-height: 100vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+    .reveal-modal .row:not(.header) .columns {
+        padding: 0;
+    }
+    #inquiryForm.submitting {
+        filter: blur(1px);
+    }
+    /*#inquiryForm.submitting::before {*/
+    #inquiryFormOverlay {
+        display: none;
+    }
+    #inquiryFormOverlay.submitting {
+        display: block;
+        filter: blur(1px);
+        width: 100%;
+        height: 100%;
+        z-index: 100000;    /* 1 more than modal */
+        background: white;
+        top: 0;
+        left: 0;
+        position: absolute;
+        opacity: 0.5;
+    }
+    #inquiryForm.submitting::after {
+        z-index: 100001;    /* 1 more than modal overlay */
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 15px;
+        height: 15px;
+        background-color: #fff;
+        border-radius: 50%;
+        position: fixed;
+        -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+    }
+
+    .form-product-definition_wrapper.gform_wrapper li.gfield_error input[type=number],
+    .form-product-definition_wrapper.gform_wrapper li.gfield_error input[type=text],
+    .form-product-definition_wrapper.gform_wrapper li.gfield_error textarea {
+        border-color: white !important;
+        margin-bottom: 0.5rem;
+        border-bottom: 1.5rem solid white;
+        height: calc(40px + 1.5rem);
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper li.gfield.gfield_error.gfield_contains_required label.gfield_label {
+        margin-top: 0 !important;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper li.gfield_error input[type=number],
+    .form-product-definition-contact_wrapper.gform_wrapper li.gfield_error input[type=text],
+    .form-product-definition-contact_wrapper.gform_wrapper li.gfield_error textarea {
+        border-color: white !important;
+        margin-bottom: 0 !important;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper li.gfield_error {
+        margin-bottom: 0.5rem !important;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .gfield.email .gfield_label {
+        display: none;
+    }
+
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::-moz-placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::-moz-placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::-moz-placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_text input::-webkit-input-placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_email input::-webkit-input-placeholder,
+    .form-product-definition-contact_wrapper.gform_wrapper .ginput_container_textarea textarea::-webkit-input-placeholder {
+        color: white !important;
+        font-style: italic;
+    }
+
+    #contact-summary {
+        font-style: italic;
+        color: #272727;
+        line-height: 1.3;
+        margin: 1rem 0 2rem;
+        font-size: 18px;
+    }
+    #contact-summary .contact-summary-update {
+        color: white;
+        text-decoration: underline;
+        font-size: 15px;
+    }
+    #contact-summary .contact-summary-update:hover {
+        color: #000;
+    }
+
+    #no-product-message {
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .field-missing {
+        font-style: italic;
+    }
+
+    /* - product modal closing */
+    .close-reveal-modal.close-product-reveal-modal {
+        background: transparent url('../images/form-cups/close-button.svg') no-repeat center center;
+        background-size: contain;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+        transition: 0.2s ease-in-out;
+        width: 27px;
+        height: 27px;
+    }
+    .close-reveal-modal.close-product-reveal-modal:hover {
+        background: transparent url('../images/form-cups/close-button_hover.svg') no-repeat center center;
+        background-size: contain;
+    }
+
+    .table-scroll.scrollable {
+        overflow-x: scroll;
+    }
+    .table-scroll.scrollable #form-summary {
+        margin-bottom: 0;
+    }
+    .scroll-info {
+        width: 100%;
+        height: 30px;
+        margin-bottom: 1.25rem;
+        background: whitesmoke;
+        border-top: solid 1px #DDDDDD;
+        position: relative;
+    }
+    .scroll-info::before,
+    .scroll-info::after {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        content: '';
+        background: url('../images/form-cups/scroll-arrow-right.svg') no-repeat center center;
+        background-size: contain;
+    }
+    .scroll-info::before {
+        left: 5px;
+        transform: translateY(-50%) rotate(-180deg);
+    }
+    .scroll-info::after {
+        right: 5px;
+    }
+    .table-scroll:not(.scrollable) + .scroll-info {
+        display: none;
+    }
+    .table-scroll.scrollable + .scroll-info {
+        display: block;
+    }
+
+    .form-product-definition .gform_page:nth-child(1) .gform_fields > .gfield_error > .validation_message,
+    .form-product-definition .gform_page:nth-child(2) .gform_fields > .gfield_error > .validation_message,
+    .form-product-definition .gform_page:nth-child(3) .gform_fields > .gfield_error > .validation_message,
+    .form-product-definition .gform_page:nth-child(4) .gform_fields > .gfield_error > .validation_message {
+        display: inline-block;
+        background: white;
+        padding: 2px !important;
+        margin-top: 2rem !important;
+        font-size: 0.875rem;
+    }
+
+    .uploads-summary {
+        display: none;
+    }
+    .uploads-summary .ginput_container_fileupload {
+        display: none;
+    }
+
+    .button-form-opener {
+        border: 1px solid #e2007a !important;
+        padding: 4px 5px !important;
+        margin-top: -4px;
+        font-weight: 600;
+        color: #e2007a !important;
+    }
+    #header .header-contact p .button-form-opener:hover,
+    .button-form-opener:hover {
+        background: #e2007a;
+        color: #fff !important;
+    }
+    .button-form-opener:hover .cls-1 {
+        fill: #fff;
+    }
+    .header-phone.form-opener .cup-icon,
+    .button-form-opener .cup-icon {
+        height: 18px;
+        margin-left: 3px;
+        vertical-align: text-top;
+        fill: #e2007a !important;
+    }
+    @media screen and (min-width: 1100px) {
+        .button-form-opener {
+            padding: 4px 10px !important;
+        }
+    }
+    @media screen and (min-width: 1160px) {
+        .button-form-opener {
+            padding: 4px 15px !important;
+        }
+    }
+
+    #inquiryForm {
+        background: #e2007a;
+        max-width: 1200px !important;
+    }
+    #inquiryForm .form-header {
+        padding: 30px 0;
+        text-transform: uppercase;
+    }
+    @media only screen and (max-width: 350px) {
+        #inquiryForm .row:not(.header) .columns {
+            text-align: left;
+        }
+    }
+
+    .colors-number-validation-message .gfield_label,
+    .colors-number-validation-message .ginput_container {
+        display: none;
+    }
+    .colors-number-validation-message .validation_message {
+        display: inline-block;
+        background: white;
+        padding: 2px !important;
+        margin-top: 2rem !important;
+        font-size: 0.875rem;
+    }
+}
